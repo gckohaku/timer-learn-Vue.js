@@ -11,11 +11,14 @@
 				</div>
 				<div class="relative mb-4">
 					<div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-						<div style="width: 30%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
+						<div style="width: 30%;"
+							class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
 						</div>
 					</div>
 				</div>
-				<button class="bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+				<button
+					class="bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+					type="button">
 					Button
 				</button>
 			</div>
