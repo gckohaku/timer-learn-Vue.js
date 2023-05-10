@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from "vue"
+import {ref, resolveTransitionHooks} from "vue"
 
 const INITIAL_TIME = '00:00:00'
 const time = ref(INITIAL_TIME)
@@ -42,6 +42,11 @@ const StopTimer = (): void => {
 	clearInterval(timerId.value)
 	isTimerStopped.value = true
 }
+
+const resetTimer = (): void => {
+	StopTimer()
+	time.value = INITIAL_TIME
+}
 </script>
 
 <template>
@@ -60,7 +65,7 @@ const StopTimer = (): void => {
 				</div>
 				<button v-if="!isTimerStopped" class="purple-btn" type="button" @click="StopTimer()">Stop</button>
 				<button v-else class="purple-btn" type="button" @click="startTimer()">Button</button>
-				<button class="purple-btn" type="button">Reset</button>
+				<button class="purple-btn" type="button" @click="resetTimer()">Reset</button>
 			</div>
 		</div>
 	</div>
