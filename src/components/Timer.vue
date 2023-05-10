@@ -29,10 +29,18 @@ const countDown = (): void => {
 	timerId.value = setInterval(countDownInner, 1000)
 }
 
+const isTimerStopped = ref(true)
+
 const startTimer = (): void => {
 	sec.value = timeToSec(time.value)
 	if (sec.value <= 0) return
+	isTimerStopped.value = false
 	countDown()
+}
+
+const StopTimer = (): void => {
+	clearInterval(timerId.value)
+	isTimerStopped.value = true
 }
 </script>
 
@@ -50,7 +58,8 @@ const startTimer = (): void => {
 						</div>
 					</div>
 				</div>
-				<button class="purple-btn" type="button" @click="startTimer()">Button</button>
+				<button v-if="!isTimerStopped" class="purple-btn" type="button" @click="StopTimer()">Stop</button>
+				<button v-else class="purple-btn" type="button" @click="startTimer()">Button</button>
 				<button class="purple-btn" type="button">Reset</button>
 			</div>
 		</div>
