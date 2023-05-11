@@ -18,6 +18,7 @@ const secToTime = (s: number): string  => {
 }
 
 const sec = ref(0)
+const startSec = ref(0)
 const timerId = ref(0)
 
 const countDownInner = (): void => {
@@ -31,11 +32,16 @@ const countDown = (): void => {
 
 const isTimerStopped = ref(true)
 
-const startTimer = (): void => {
-	sec.value = timeToSec(time.value)
+const resumeTimer = (): void => {
 	if (sec.value <= 0) return
 	isTimerStopped.value = false
 	countDown()
+}
+
+const startTimer = (): void => {
+	sec.value = timeToSec(time.value)
+	startSec.value = sec.value
+	resumeTimer()
 }
 
 const StopTimer = (): void => {
@@ -46,6 +52,7 @@ const StopTimer = (): void => {
 const resetTimer = (pausesAudio: boolean = false): void => {
 	StopTimer()
 	time.value = INITIAL_TIME
+	startSec.value = 0
 	if (!pausesAudio) return
 	audio.pause()
 	audio.currentTime = 0
@@ -55,6 +62,7 @@ const audio = new Audio('/src/assets/alarm.mp3')
 
 watch(sec, (): void => {
 	if (!isTimerStopped.value && sec.value > 0) return
+	audio.volume = 0.25
 	audio.play()
 	resetTimer()
 })
@@ -75,6 +83,7 @@ watch(sec, (): void => {
 					</div>
 				</div>
 				<button v-if="!isTimerStopped" class="purple-btn" type="button" @click="StopTimer()">Stop</button>
+				<button v-else-if="startSec !== 0" @click="resumeTimer()" class="purple-btn">Resume</button>
 				<button v-else class="purple-btn" type="button" @click="startTimer()">Button</button>
 				<button class="purple-btn" type="button" @click="resetTimer(true)">Reset</button>
 			</div>
