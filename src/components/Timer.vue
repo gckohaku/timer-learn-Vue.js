@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from "vue"
+import {ref, watch, computed} from "vue"
 
 const INITIAL_TIME = '00:00:00'
 const time = ref(INITIAL_TIME)
@@ -66,6 +66,12 @@ watch(sec, (): void => {
 	audio.play()
 	resetTimer()
 })
+
+const remainingTimePercent = computed((): number => {
+	const st = startSec.value
+	if (st === 0) return 0
+	return Math.round((st - sec.value) / st * 100)
+})
 </script>
 
 <template>
@@ -78,7 +84,7 @@ watch(sec, (): void => {
 				</div>
 				<div class="relative mb-4">
 					<div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-						<div style="width: 30%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
+						<div style="'width:' + remainingTimePercent + '%'" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
 						</div>
 					</div>
 				</div>
