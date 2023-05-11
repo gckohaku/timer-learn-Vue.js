@@ -43,9 +43,12 @@ const StopTimer = (): void => {
 	isTimerStopped.value = true
 }
 
-const resetTimer = (): void => {
+const resetTimer = (pausesAudio: boolean = false): void => {
 	StopTimer()
 	time.value = INITIAL_TIME
+	if (!pausesAudio) return
+	audio.pause()
+	audio.currentTime = 0
 }
 
 const audio = new Audio('/src/assets/alarm.mp3')
@@ -73,7 +76,7 @@ watch(sec, (): void => {
 				</div>
 				<button v-if="!isTimerStopped" class="purple-btn" type="button" @click="StopTimer()">Stop</button>
 				<button v-else class="purple-btn" type="button" @click="startTimer()">Button</button>
-				<button class="purple-btn" type="button" @click="resetTimer()">Reset</button>
+				<button class="purple-btn" type="button" @click="resetTimer(true)">Reset</button>
 			</div>
 		</div>
 	</div>
