@@ -48,8 +48,11 @@ const resetTimer = (): void => {
 	time.value = INITIAL_TIME
 }
 
+const audio = new Audio('/src/assets/alarm.mp3')
+
 watch(sec, (): void => {
 	if (!isTimerStopped.value && sec.value > 0) return
+	audio.play()
 	resetTimer()
 })
 </script>
