@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, resolveTransitionHooks} from "vue"
+import {ref, watch} from "vue"
 
 const INITIAL_TIME = '00:00:00'
 const time = ref(INITIAL_TIME)
@@ -47,6 +47,11 @@ const resetTimer = (): void => {
 	StopTimer()
 	time.value = INITIAL_TIME
 }
+
+watch(sec, (): void => {
+	if (!isTimerStopped.value && sec.value > 0) return
+	resetTimer()
+})
 </script>
 
 <template>
