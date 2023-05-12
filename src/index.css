@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .btn {
-    @apply text-white font-bold uppercase text-xs px-4 py-2 rounded mr-1 mb-1 ease-linear transition-all duration-150;
+    @apply text-black font-bold uppercase text-xs px-4 py-2 rounded mr-1 mb-1 ease-linear transition-all duration-150;
 }
 
 .purple-btn {
-    @apply btn bg-purple-500;
+    @apply btn bg-[#40ffff];
 }
 
 .purple-btn:active {
-    @apply bg-purple-600;
+    @apply bg-[#00e0e0];
 }

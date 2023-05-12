@@ -89,8 +89,8 @@ const remainingTimePercent = computed((): number => {
 					<input type="time" step="1" class="outline-none" v-model="time" @input="resetTimerExceptTime()">
 				</div>
 				<div class="relative mb-4">
-					<div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-						<div :style="'width:' + remainingTimePercent + '%'" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
+					<div class="overflow-hidden h-2 text-xs flex rounded bg-[#e0ffff]">
+						<div :style="'width:' + remainingTimePercent + '%'" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#40ffff]">
 						</div>
 					</div>
 				</div>
