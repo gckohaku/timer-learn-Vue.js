@@ -49,10 +49,14 @@ const StopTimer = (): void => {
 	isTimerStopped.value = true
 }
 
-const resetTimer = (pausesAudio: boolean = false): void => {
+const resetTimerExceptTime = (): void => {
 	StopTimer()
-	time.value = INITIAL_TIME
 	startSec.value = 0
+}
+
+const resetTimer = (pausesAudio: boolean = false): void => {
+	resetTimerExceptTime()
+	time.value = INITIAL_TIME
 	if (!pausesAudio) return
 	audio.pause()
 	audio.currentTime = 0
@@ -80,7 +84,7 @@ const remainingTimePercent = computed((): number => {
 			<div class="p-5 text-center">
 				<h5 class="text-x1 font-semibold mb-2">Card title</h5>
 				<div class="mb-4">
-					<input type="time" step="1" class="outline-none" v-model="time">
+					<input type="time" step="1" class="outline-none" v-model="time" @input="resetTimerExceptTime()">
 				</div>
 				<div class="relative mb-4">
 					<div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
