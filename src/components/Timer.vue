@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {ref, watch, computed} from "vue"
 
+defineProps<{title: string}>()
+
 const INITIAL_TIME = '00:00:00'
 const time = ref(INITIAL_TIME)
 
@@ -82,7 +84,7 @@ const remainingTimePercent = computed((): number => {
 	<div class="flex items-center h-screen">
 		<div class="shadow-md rounded-md mx-auto" style="width: 350px;">
 			<div class="p-5 text-center">
-				<h5 class="text-x1 font-semibold mb-2">Card title</h5>
+				<h5 class="text-x1 font-semibold mb-2">{{ title }}</h5>
 				<div class="mb-4">
 					<input type="time" step="1" class="outline-none" v-model="time" @input="resetTimerExceptTime()">
 				</div>
