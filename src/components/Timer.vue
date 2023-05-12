@@ -81,7 +81,8 @@ const remainingTimePercent = computed((): number => {
 </script>
 
 <template>
-	<div class="flex items-center h-screen">
+
+	<div class="flex items-center">
 		<div class="shadow-md rounded-md mx-auto" style="width: 350px;">
 			<div class="p-5 text-center">
 				<h5 class="text-x1 font-semibold mb-2">{{ title }}</h5>
